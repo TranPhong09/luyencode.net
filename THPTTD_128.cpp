@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, k;
+    cin >> n >> k;
+
+    vector<int> p(n);
+    for (int i = 0; i < n; i++) {
+        cin >> p[i];
+    }
+    priority_queue<int, vector<int>, greater<int>> min_heap;
+    for (int i = 0; i < k; i++) {
+        min_heap.push(p[i]);
+    }
+    cout << min_heap.top() << "\n";
+    for (int i = k; i < n; i++) {
+        if (p[i] > min_heap.top()) {
+            min_heap.pop();
+            min_heap.push(p[i]);
+        }
+        cout << min_heap.top() << "\n";
+    }
+
+    return 0;
+}
